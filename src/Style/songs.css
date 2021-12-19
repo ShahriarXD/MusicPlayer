@@ -5,3 +5,13 @@
     justify-content: center;
     align-items: center;
 }
+.song-container img{
+    width: 20%;
+    border-radius: 50%;
+}
+.song-container h2{
+    padding: 3rem 1rem 1rem 1rem;
+}
+.song-container h3{
+    font-size: 1rem;
+}

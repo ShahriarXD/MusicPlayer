@@ -1,12 +1,12 @@
 import React from 'react'
 import '../Style/songs.css'
 
-function Song() {
+function Song(props) {
     return (
         <div className='song-container'>
-            <h1>Picture</h1>
-            <h1>Song Name</h1>
-            <h1>Artist</h1>
+            <img src={props.currentSong.cover} alt={props.currentSong.name}></img>
+            <h2>{props.currentSong.name}</h2>
+            <h3>{props.currentSong.artist}</h3>
         </div>
     )
 }
