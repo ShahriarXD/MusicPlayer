@@ -1,6 +1,6 @@
 import React, {useRef, useState}  from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlayCircle, faAngleLeft, faAngleRight  } from '@fortawesome/free-solid-svg-icons'
+import { faPlayCircle, faAngleLeft, faAngleRight , faPause  } from '@fortawesome/free-solid-svg-icons'
 import '../Style/player.css'
 
 function Player({currentSong , isPlaying , setIsPlaying}) {
@@ -27,11 +27,15 @@ function Player({currentSong , isPlaying , setIsPlaying}) {
             Math.floor(time/60) + ":" + ("0" + Math.floor(time%60)).slice(-2)
         )
     }
+    function dragHandler(event){
+        audioRef.current.currentTime = event.target.value
+        setSongInfo({...songInfo, currentTime : event.target.value})
+    }
     // state
     const [songInfo , setSongInfo] = useState(
         {
-            currentTime : null,
-            Totalduration : null
+            currentTime : 0,
+            Totalduration : 0,
         }
     );
     // eikhane dic deye 2ta use korese songInfo te mane multiple value change korse
@@ -39,12 +43,17 @@ function Player({currentSong , isPlaying , setIsPlaying}) {
         <div className='player'>
             <div className='time-control'>
                 <p>{timeConvertion(songInfo.currentTime)}</p>
-                <input type="range"></input>
+                <input 
+                type="range"
+                min={0}
+                max={songInfo.Totalduration}
+                value={songInfo.currentTime}
+                onChange={dragHandler}></input>
                 <p>{timeConvertion(songInfo.Totalduration)}</p>
             </div>
             <div className='play-control'>
                 <FontAwesomeIcon className='backward-button' icon={faAngleLeft} size='3x'></FontAwesomeIcon>
-                <FontAwesomeIcon className='play-button' icon={faPlayCircle} size='3x' onClick={playSongHandler}></FontAwesomeIcon>
+                <FontAwesomeIcon className='play-button' icon={isPlaying ? faPause : faPlayCircle} size='3x' onClick={playSongHandler}></FontAwesomeIcon>
                 <FontAwesomeIcon className='forward-button' icon={faAngleRight} size='3x'></FontAwesomeIcon>
             </div>
             <div>
