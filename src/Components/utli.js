@@ -10,7 +10,7 @@ function chillHop() {
                 id:uuidv4(),
                 active : true,
                 color : ["#000000", "#FFF0F7"],
-                audio : '../Audio/devil_eyes.mp3'
+                audio : 'https://cdn.discordapp.com/attachments/550242758141542407/922310844526776330/hippie_sabotage_devil_eyes_bass_boosted_7382883126789364131.mp3'
             },
             {
                 name : "Zaalima | Raees",
@@ -19,7 +19,7 @@ function chillHop() {
                 id:uuidv4(),
                 active : false,
                 color : ["#DBD9A0", "#A3A05D"],
-                audio : '../Audio/zaalima.mp3'
+                audio : 'https://cdn.discordapp.com/attachments/550242758141542407/922252541935362098/zaalima.mp3'
             },
             {
                 name : "Na Pawar Golpo",
@@ -28,7 +28,7 @@ function chillHop() {
                 id:uuidv4(),
                 active : false,
                 color : ["#A2403F", "#7E86AB"],
-                audio : '../Audio/na_pawar.mp3'
+                audio : 'https://cdn.discordapp.com/attachments/550242758141542407/922252541100687410/na_pawar.mp3'
             },
             {
                 name : "Hate Me",
@@ -37,7 +37,7 @@ function chillHop() {
                 id:uuidv4(),
                 active : false,
                 color : ["#8E141F", "#E7C1C0"],
-                audio : '../Audio/hate_me.mp3'
+                audio : 'https://cdn.discordapp.com/attachments/550242758141542407/922252540664512572/hate_me.mp3'
             }
         ]
     )
