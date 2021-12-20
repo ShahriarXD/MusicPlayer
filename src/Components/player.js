@@ -1,4 +1,4 @@
-import React, {useRef}  from 'react';
+import React, {useRef, useState}  from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle, faAngleLeft, faAngleRight  } from '@fortawesome/free-solid-svg-icons'
 import '../Style/player.css'
@@ -17,13 +17,30 @@ function Player({currentSong , isPlaying , setIsPlaying}) {
             setIsPlaying(!isPlaying);  //mane eikhane true and false toggele hocche
         }
     }
-
+    function timeUpdateHandler(event){
+        const current = event.target.currentTime
+        const duration = event.target.duration
+        setSongInfo({...songInfo, currentTime : current , Totalduration:duration})
+    }
+    function timeConvertion( time ){
+        return(
+            Math.floor(time/60) + ":" + ("0" + Math.floor(time%60)).slice(-2)
+        )
+    }
+    // state
+    const [songInfo , setSongInfo] = useState(
+        {
+            currentTime : null,
+            Totalduration : null
+        }
+    );
+    // eikhane dic deye 2ta use korese songInfo te mane multiple value change korse
     return (
         <div className='player'>
             <div className='time-control'>
-                <p>Start Time</p>
+                <p>{timeConvertion(songInfo.currentTime)}</p>
                 <input type="range"></input>
-                <p>End Time</p>
+                <p>{timeConvertion(songInfo.Totalduration)}</p>
             </div>
             <div className='play-control'>
                 <FontAwesomeIcon className='backward-button' icon={faAngleLeft} size='3x'></FontAwesomeIcon>
@@ -31,7 +48,12 @@ function Player({currentSong , isPlaying , setIsPlaying}) {
                 <FontAwesomeIcon className='forward-button' icon={faAngleRight} size='3x'></FontAwesomeIcon>
             </div>
             <div>
-                <audio src={currentSong.audio} ref={audioRef} type="audio/mpeg"></audio>
+                <audio 
+                onTimeUpdate={timeUpdateHandler}
+                onLoadedMetadata={timeUpdateHandler} // preload the Data
+                src={currentSong.audio} 
+                ref={audioRef} 
+                type="audio/mpeg"></audio>
             </div>
         </div>
     )
